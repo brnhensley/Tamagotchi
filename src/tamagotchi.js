@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 export class Tamagotchi {
   constructor(name) {
     this.name = name;
@@ -71,18 +73,36 @@ export class Tamagotchi {
 
   IsDead() {
     if (this.happiness === 0) {
-      let dead = " DIED OF SADNESS!"
-      console.log(dead);
+      let dead = `${this.name} DIED OF SADNESS!`
+      this.DeadGif("poop")
       return dead;
     } else if (this.numberOfPoops === 5) {
-      let drowned = " DROWNED IN POOP!"
-      console.log(drowned);
+      let drowned = `${this.name} DROWNED IN POOP!`
+      this.DeadGif("drowned")
       return drowned;
     } else if (this.food === 0) {
-      let starved = " STARVED!"
-      console.log(starved);
+      this.DeadGif("starved")
+      let starved = `${this.name} STARVED!`
       return starved;
     }
   }
+
+  // DeadGif(deathcause) {
+  //   $.ajax({
+  //     url: `https://api.giphy.com/v1/gifs/random?api_key=${process.env.API_KEY}&tag=${deathcause}&rating=PG-13`,
+  //     type: 'GET',
+  //     data: {
+  //       format: 'json'
+  //     },
+  //     success: function(response) {
+  //       $('.gif').html(`<img src="${response.data.images.original.url}">`);
+  //       $(".gif").show();
+  //     },
+  //     error: function() {
+  //       $('#errors').text("There was an error processing your request. Please try again.");
+  //     },
+  //   });
+  //
+  // }
 
 }
